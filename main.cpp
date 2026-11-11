@@ -64,7 +64,8 @@ int main() {
     Spline s(1000);
     printf("\nУскорение (K=%ld точек)\n%3s %9s %7s %7s\n", K, "p", "T, с", "S", "E");
     double T1 = 0;
-    for (int p = 1; p <= omp_get_max_threads(); p *= 2) {
+    int g = omp_get_max_threads();
+    for (int p = 1; p <= g; p *= 2) {
         omp_set_num_threads(p);
         double t0 = omp_get_wtime();
         double e = maxErr(s, K);
